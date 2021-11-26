@@ -24,6 +24,10 @@ class Arc {
         //and the elements closest to the center are the smallest - the awayFromCenterBias
         //this sums up to the first elements to be added to the outside are the largest, slowest and darkest, and the middle ones tend towards being smaller
         //everything with a heavy degree of randomness with parameters like (5, 30) for weight as an example. That's nearly all random.
+        this.clockwise = true
+        if (random(0, 10) > 7) {
+            this.clockwise = false
+        }
     }
     display(canvas) {
         canvas.beginPath()
@@ -33,7 +37,11 @@ class Arc {
         canvas.stroke()
     }
     move() {
-        this.start += this.biasspeed
+        let acIt = 1
+        if (!this.clockwise) {
+            acIt = -1
+        }
+        this.start += this.biasspeed * acIt
     }
 }
 

@@ -18,7 +18,7 @@ settings = {
     hslHueMin: 230, //if it goes from 300 to 60 for example, just count it as 420 not 60
     hslHueMax: 285,
     hslLightnessMax: 60, //no min, min is black and I like that
-    antiClockWiseProbability: 0.3
-
+    antiClockWiseProbability: 0.3,
+    numberOfArcs: 200
 
 }

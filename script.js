@@ -62,7 +62,7 @@ canvas.lineCap = "round"
 
 
 arcs = []
-let a = 200
+let a = settings.numberOfArcs
 for (let i = 0; i < a; i++) {
     arcs.push(new Arc(i, a));
 }
@@ -81,6 +81,7 @@ setInterval(function() {
 
 
 }
+
 
 function random (min, max) {
     return (Math.random() * (max-min)) + min

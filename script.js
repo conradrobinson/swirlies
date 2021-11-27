@@ -50,6 +50,7 @@ class Arc {
 stuff()
 
 function stuff() {
+if (!isSettingsPage) {
 dims = [window.innerWidth, window.innerHeight]
 center = [dims[0]/2, dims[1]/2]
 c = document.getElementById("cnvs");
@@ -78,7 +79,7 @@ setInterval(function() {
         arcs[j].move();
     }  
 }, 10)
-
+}
 
 }
 

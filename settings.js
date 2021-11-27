@@ -14,7 +14,7 @@ settings = {
     maxRadians: Math.PI, //how many radians of the arc are visible at max
     speedMin: 0.1,
     speedMax: 10,
-    speedDivisor: 500, //otherwise its reaaaallly fast
+    speedDivisor: 100, //otherwise its reaaaallly fast
     hslHueMin: 230, //if it goes from 300 to 60 for example, just count it as 420 not 60
     hslHueMax: 285,
     hslLightnessMax: 60, //no min, min is black and I like that

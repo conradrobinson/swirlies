@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swirls - press R to refresh</title>
+</head>
+<style>
+    .settingsPage {
+        color: #FFFFFF;
+        margin-top: 0.5em;
+        margin-left: 10%;
+        margin-right: auto;
+        background-color: #000000;
+    }
+    #noLeftMargin {
+        margin-left: 1em;
+    }
+    #button {
+        width: auto;
+        height: 30px;
+    }
+    #button:hover {
+        background-color: aquamarine;
+        color: black;
+    }
+</style>
+<body style="background-color: #000000;">
+    <!-- the stuff for swirls -->
+    <audio loop autoplay id="audio2">
+        <source id="audio" src="./calm.mp3" type="audio/mp3">
+    </audio>
+    <canvas id="cnvs" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0;"></canvas>
+
+
+    <!-- the stuff for settings -->
+    <label for="arcnum" class="settingsPage">Number Of Arcs On Screen:</label><br>
+    <input name="arcnum" class="settingsPage" type="number" step="1" id="numOfArcs"> <br>
+
+    <label for="anticlockwise" class="settingsPage">Percentage Of Arcs Which Go Anti-Clockwise:</label><br>
+    <input name="anticlockwise" class="settingsPage" type="number" step="0.1" id="antiClockWiseProb"><br>
+   
+    <label for="minSpeed maxSpeed" class="settingsPage">Speed Minimum, Maximum</label><br>
+    <input name="minspeed" class="settingsPage" type="number" step="0.1" id="minSpeed"><br>
+    <input name="maxspeed" class="settingsPage" type="number" step="0.1" id="maxSpeed"><br>
+
+    <label for="mindegrees maxdegrees" class="settingsPage">Arc Degrees Minimum, Maximum</label><br>
+    <input name="mindegrees" class="settingsPage" type="number" step="0.1" id="minDegrees"><br>
+    <input name="maxdegrees" class="settingsPage" type="number" step="0.1" id="maxDegrees"><br>
+
+    <label for="minweight maxweight" class="settingsPage">Thickness Of Arcs Minimum, Maximum</label><br>
+    <input name="minweight" class="settingsPage" type="number" step="0.1" id="minWeight"><br>
+    <input name="maxweight" class="settingsPage" type="number" step="0.1" id="maxWeight"><br>
+
+    <label for="minweight maxweight" class="settingsPage"><a href="http://thenewcode.com/assets/images/hsl-color-wheel.png">Hue Wheel</a> Minimum, Maximum - wraps around 360</label><br>
+    <input name="minhue" class="settingsPage" type="number" step="1" id="minHue"><br>
+    <input name="maxhue" class="settingsPage" type="number" step="1" id="maxHue"><br>
+
+    <label for="fdb fdbm" class="settingsPage">First Drawn Bias Enabled, Multiplier</label><br>
+    <input name="fdb" class="settingsPage" type="checkbox" id="FirstDrawnBias">
+    <input id="noLeftMargin" name="fdbm" class="settingsPage" type="number" step="0.1" id="FirstDrawnBiasMult"><br>
+
+    <label for="afcb afcbm" class="settingsPage">Distance From Center Bias Enabled, Multiplier</label><br>
+    <input name="afcb" class="settingsPage" type="checkbox" id="AwayFromCenterBias">
+    <input id="noLeftMargin" name="afcbm" class="settingsPage" type="number" step="0.01" id="AwayFromCenterBiasMult"><br>
+
+    <input class="settingsPage" type="button" name="button" id="button" value="Take Me To My Custom Swirl!">
+
+
+
+</body>
+<script src="./settings.js"></script>
+<script>
+const urlSearchParams = new URLSearchParams(window.location.search);
+const settingsParams = Object.fromEntries(urlSearchParams.entries());
+let isSettingsPage = Object.keys(settingsParams).length == 0
+if (isSettingsPage) {
+    
+    //show settings page
+    document.getElementById("audio").remove()
+    document.getElementById("cnvs").remove()
+} else {
+
+    settingsPageElements = Array.from(document.getElementsByClassName("settingsPage"))
+    for (let i = 0; i < settingsPageElements.length; i++) {
+        settingsPageElements[i].remove()
+    }
+    breaks = Array.from(document.getElementsByTagName("br"))
+    for (let i = 0; i < breaks.length; i++) {
+        breaks[i].remove()
+    }
+    console.log(settingsParams)
+
+    for (let i = 0; i < Object.keys(settingsParams).length; i++) {
+        settingsParams[Object.keys(settingsParams)[i]] = parseFloatIfFloat(settingsParams[Object.keys(settingsParams)[i]])
+        settingsParams[Object.keys(settingsParams)[i]] = parseTrue(settingsParams[Object.keys(settingsParams)[i]])
+
+    }
+
+    //show swirls
+
+    settings = {...settings, ...settingsParams}
+    console.log(settings)
+    let audio = document.getElementById("audio")
+    //audio.src = settingsParams.audio
+    // audio = document.getElementById("audio2")
+    // audio.play()
+}
+
+function isNumeric(str) {
+  if (typeof str != "string") return false
+  return !isNaN(str) && 
+         !isNaN(parseFloat(str)) 
+}
+
+function parseFloatIfFloat(str) {
+    if (isNumeric(str)) {
+        return parseFloat(str)
+    } else {
+        return str
+    }
+}
+
+function parseTrue(str) {
+    if (str == "true") {
+        return true
+    }
+    else if (str == "false") {
+        return false
+    } else {
+        return str
+    }
+}
+
+</script>
+<script src="./settingsPage.js"></script>
+<script src="./script.js"></script>
+<script src="./reload.js"></script>
+
+</html>

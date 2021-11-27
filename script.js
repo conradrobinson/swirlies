@@ -46,16 +46,24 @@ class Arc {
     }
 }
 
-
 stuff()
 
 function stuff() {
+    console.log(settings)
+dims = []
+let cId = ""
 if (!isSettingsPage) {
-dims = [window.innerWidth, window.innerHeight]
+    cId = "cnvs"
+    dims = [window.innerWidth, window.innerHeight]
+
+} else {
+    cId = "previewCnvs"
+    dims = [document.getElementById("previewCnvs").scrollWidth, document.getElementById("previewCnvs").scrollHeight]
+}
 center = [dims[0]/2, dims[1]/2]
-c = document.getElementById("cnvs");
-c.width = window.innerWidth;
-c.height = window.innerHeight;
+c = document.getElementById(cId);
+c.width = dims[0];
+c.height = dims[1];
 canvas = c.getContext("2d")
 canvas.lineCap = "round"
 
@@ -72,22 +80,23 @@ for (let i = 0; i < arcs.length; i++) {
     arcs[i].display(canvas)
 
 }
-setInterval(function() {
+intervals.push(setInterval(function() {
     canvas.clearRect(0, 0, c.width, c.height)
     for (let j = 0; j < arcs.length; j++) {
         arcs[j].display(canvas)
         arcs[j].move();
     }  
-}, 10)
+}, 10))
 }
 
-}
+
 
 
 function random (min, max) {
     return (Math.random() * (max-min)) + min
 }
 
+//not my code
 function hslToHex(h, s, l) {
     l /= 100;
     const a = s * Math.min(l, 1 - l) / 100;
@@ -99,6 +108,7 @@ function hslToHex(h, s, l) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
+  //not my code
   function wrap(x, x_min,x_max) {
     return (((x - x_min) % (x_max - x_min)) + (x_max - x_min)) % (x_max - x_min) + x_min
   }

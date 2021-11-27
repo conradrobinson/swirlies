@@ -10,8 +10,8 @@ document.getElementsByName('arcnum')[0].value = settings.numberOfArcs
 document.getElementsByName('anticlockwise')[0].value = settings.antiClockWiseProbability
 document.getElementsByName('minspeed')[0].value = settings.speedMin
 document.getElementsByName('maxspeed')[0].value = settings.speedMax
-document.getElementsByName('mindegrees')[0].value = settings.minRadians
-document.getElementsByName('maxdegrees')[0].value = settings.maxRadians
+document.getElementsByName('mindegrees')[0].value = settings.minRadians * (180/Math.PI)
+document.getElementsByName('maxdegrees')[0].value = settings.maxRadians * (180/Math.PI)
 document.getElementsByName('minweight')[0].value = settings.minWeightBeforeBias
 document.getElementsByName('maxweight')[0].value = settings.maxWeightBeforeBias
 document.getElementsByName('minhue')[0].value = settings.hslHueMin
@@ -25,6 +25,8 @@ inputs = document.getElementsByClassName("settingsPage")
 for (let i = 0; i < inputs.length; i++) {
 inputs[i].addEventListener('change', (e) => {
     let element = e.target
+    //I realise now how time inefficient this is - I corrected for the hue values
+    //also the parsefloat does nothing but again didnt realise till I did it
     switch (element.name) {
         case "arcnum":
             settings.numberOfArcs = parseFloat(element.value)
@@ -63,11 +65,14 @@ inputs[i].addEventListener('change', (e) => {
             settings.awayFromCenterBiasMult = parseFloat(element.value)
             break;
     } 
-    settings.hslHueMin = document.getElementsByName('minhue')[0].value
-    settings.hslHueMax = document.getElementsByName('maxhue')[0].value 
+    settings.hslHueMin = parseFloat(document.getElementsByName('minhue')[0].value)
+    settings.hslHueMax = parseFloat(document.getElementsByName('maxhue')[0].value)
+
+    reload() //refresh preview canvas
 })
 }
 }
+//not my code
 function serialize(obj) {
     var str = [];
     for (var p in obj)

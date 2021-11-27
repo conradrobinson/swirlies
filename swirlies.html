@@ -17,6 +17,10 @@
     #noLeftMargin {
         margin-left: 1em;
     }
+    #inputCont {
+        margin-top: 3em;
+        width: 30em;
+    }
     #button {
         width: auto;
         height: 30px;
@@ -25,16 +29,21 @@
         background-color: aquamarine;
         color: black;
     }
+    #previewCnvs {
+        outline: white 3px solid;
+    }
 </style>
 <body style="background-color: #000000;">
     <!-- the stuff for swirls -->
-    <audio loop autoplay id="audio2">
+    <audio loop id="audio2">
         <source id="audio" src="./calm.mp3" type="audio/mp3">
     </audio>
     <canvas id="cnvs" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0;"></canvas>
 
 
     <!-- the stuff for settings -->
+    <div style="display:inline-flex">
+    <div id="inputCont">
     <label for="arcnum" class="settingsPage">Number Of Arcs On Screen:</label><br>
     <input name="arcnum" class="settingsPage" type="number" step="1" id="numOfArcs"> <br>
 
@@ -66,9 +75,9 @@
     <input id="noLeftMargin" name="afcbm" class="settingsPage" type="number" step="0.01" id="AwayFromCenterBiasMult"><br>
 
     <input class="settingsPage" type="button" name="button" id="button" value="Take Me To My Custom Swirl!">
-
-
-
+    </div>
+    <canvas id="previewCnvs" class="settingsPage" style="width: 40em; height: 40em; z-index: 99; margin-left: 0%; margin-top: 0%;"></canvas>
+</div>
 </body>
 <script src="./settings.js"></script>
 <script>
@@ -80,6 +89,7 @@ if (isSettingsPage) {
     //show settings page
     document.getElementById("audio").remove()
     document.getElementById("cnvs").remove()
+
 } else {
 
     settingsPageElements = Array.from(document.getElementsByClassName("settingsPage"))
@@ -90,8 +100,6 @@ if (isSettingsPage) {
     for (let i = 0; i < breaks.length; i++) {
         breaks[i].remove()
     }
-    console.log(settingsParams)
-
     for (let i = 0; i < Object.keys(settingsParams).length; i++) {
         settingsParams[Object.keys(settingsParams)[i]] = parseFloatIfFloat(settingsParams[Object.keys(settingsParams)[i]])
         settingsParams[Object.keys(settingsParams)[i]] = parseTrue(settingsParams[Object.keys(settingsParams)[i]])
@@ -101,19 +109,18 @@ if (isSettingsPage) {
     //show swirls
 
     settings = {...settings, ...settingsParams}
-    console.log(settings)
     let audio = document.getElementById("audio")
     //audio.src = settingsParams.audio
-    // audio = document.getElementById("audio2")
-    // audio.play()
+    audio = document.getElementById("audio2")
+    audio.play()
 }
-
+//not my code
 function isNumeric(str) {
   if (typeof str != "string") return false
   return !isNaN(str) && 
          !isNaN(parseFloat(str)) 
 }
-
+//
 function parseFloatIfFloat(str) {
     if (isNumeric(str)) {
         return parseFloat(str)
@@ -135,7 +142,8 @@ function parseTrue(str) {
 
 </script>
 <script src="./settingsPage.js"></script>
-<script src="./script.js"></script>
 <script src="./reload.js"></script>
+
+<script src="./script.js"></script>
 
 </html>

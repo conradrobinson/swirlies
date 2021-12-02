@@ -4,6 +4,10 @@ document.onkeydown = function (e) {
     if (e.code == "KeyR") {
         reload()
     }
+    if (e.code == "KeyS") {
+        end(document.getElementById("audio2"))
+        console.log("skipped")
+    }
 }
 
 function reload() {

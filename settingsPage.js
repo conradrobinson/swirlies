@@ -20,7 +20,8 @@ document.getElementsByName('fdb')[0].checked = settings.firstDrawnBiasEnabled
 document.getElementsByName('fdbm')[0].value = settings.firstDrawnBiasMult
 document.getElementsByName('afcb')[0].checked = settings.awayFromCenterBiasEnabled
 document.getElementsByName('afcbm')[0].value = settings.awayFromCenterBiasMult
-
+document.getElementsByName('musicGenre')[0].value = settings.genre
+document.getElementsByName('musicGenre')[0].options[document.getElementsByName('musicGenre')[0].selectedIndex] = document.getElementsByName('musicGenre')[0].options[0]
 inputs = document.getElementsByClassName("settingsPage")
 for (let i = 0; i < inputs.length; i++) {
 inputs[i].addEventListener('change', (e) => {
@@ -67,8 +68,7 @@ inputs[i].addEventListener('change', (e) => {
     } 
     settings.hslHueMin = parseFloat(document.getElementsByName('minhue')[0].value)
     settings.hslHueMax = parseFloat(document.getElementsByName('maxhue')[0].value)
-
-    reload() //refresh preview canvas
+    settings.genre = document.getElementsByName('musicGenre')[0].options[document.getElementsByName('musicGenre')[0].selectedIndex].value
 })
 }
 }

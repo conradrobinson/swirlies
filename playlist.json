@@ -1,0 +1,21 @@
+{
+    "classical": [
+         {"filename": "./music/classical/beethoven-moonlight-sonata-mvt-1-5027211120511270824.mp3", "type": "mp3"},
+         {"filename": "./music/classical/camille-saint-sa-ns-danse-macabre-6838457613536633357.mp3", "type": "mp3"},
+         {"filename": "./music/classical/chopin-fantaisie-impromptu-op-66--2611535387953384043.mp3", "type": "mp3"},
+         {"filename": "./music/classical/chopin-nocturne-op-9-no-2-557229807519766502.mp3", "type": "mp3"},
+         {"filename": "./music/classical/chopin-prelude-in-e-minor-op-28-no-4--2252683102351165319.mp3", "type": "mp3"},
+         {"filename": "./music/classical/chopin-waltz-in-c-sharp-minor-op-64-no-2--7260917723486638553.mp3", "type": "mp3"},
+         {"filename": "./music/classical/clair-de-lune.mp3", "type": "mp3"},
+         {"filename": "./music/classical/dance-of-sugarplum-fairy.mp3", "type": "mp3"},
+         {"filename": "./music/classical/debussy-arabesque-no-1-s9p3BHMByoK-gucZ5PPY.mp3", "type": "mp3"},
+         {"filename": "./music/classical/debussy-reverie-5327373921670949621.mp3", "type": "mp3"},
+         {"filename": "./music/classical/j-s-bach-prelude-in-c-major-8558892282653666087.mp3", "type": "mp3"},
+         {"filename": "./music/classical/Liebestraum.mp3", "type": "mp3"},
+         {"filename": "./music/classical/liszt-un-sospiro-5503172309522224520.mp3", "type": "mp3"},
+         {"filename": "./music/classical/schubert-serenade.mp3", "type": "mp3"},
+         {"filename": "./music/classical/spiegel-im-spiegel.mp3", "type": "mp3"},
+         {"filename": "./music/classical/waltz-of-flowers.mp3", "type": "mp3"},
+         {"filename": "./music/classical/yo-yo-ma-bach-cello-suite-no-1-in-g-major-prelude-official-video-5963207259404381929.mp3", "type": "mp3"}
+    ]
+}

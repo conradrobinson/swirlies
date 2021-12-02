@@ -19,6 +19,7 @@ settings = {
     hslHueMax: 285,
     hslLightnessMax: 60, //no min, min is black and I like that
     antiClockWiseProbability: 0.3,
-    numberOfArcs: 200
+    numberOfArcs: 200,
+    genre: "classical"
 
 }

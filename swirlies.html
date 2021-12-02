@@ -22,12 +22,16 @@
         width: 30em;
     }
     #button {
+background-color:darkcyan;
         width: auto;
         height: 30px;
+        border: none;
+
     }
     #button:hover {
         background-color: aquamarine;
         color: black;
+
     }
     #previewCnvs {
         outline: white 3px solid;
@@ -35,8 +39,7 @@
 </style>
 <body style="background-color: #000000;">
     <!-- the stuff for swirls -->
-    <audio loop id="audio2">
-        <source id="audio" src="./calm.mp3" type="audio/mp3">
+    <audio id="audio2">
     </audio>
     <canvas id="cnvs" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0;"></canvas>
 
@@ -73,7 +76,12 @@
     <label for="afcb afcbm" class="settingsPage">Distance From Center Bias Enabled, Multiplier</label><br>
     <input name="afcb" class="settingsPage" type="checkbox" id="AwayFromCenterBias">
     <input id="noLeftMargin" name="afcbm" class="settingsPage" type="number" step="0.01" id="AwayFromCenterBiasMult"><br>
-
+    <label class="settingsPage" for="musicGenre">Genre of Music:</label>
+    <select class="settingsPage" name="musicGenre" id="musicGenre"><br>
+      <option value="classical">Classical</option>
+      <option value="electric">Electric</option>
+      <option value="ambient">Ambient</option>
+    </select><br>
     <input class="settingsPage" type="button" name="button" id="button" value="Take Me To My Custom Swirl!">
     </div>
     <canvas id="previewCnvs" class="settingsPage" style="width: 40em; height: 40em; z-index: 99; margin-left: 0%; margin-top: 0%;"></canvas>
@@ -87,7 +95,7 @@ let isSettingsPage = Object.keys(settingsParams).length == 0
 if (isSettingsPage) {
     
     //show settings page
-    document.getElementById("audio").remove()
+    document.getElementById("audio2").remove()
     document.getElementById("cnvs").remove()
 
 } else {
@@ -141,6 +149,8 @@ function parseTrue(str) {
 }
 
 </script>
+<script src="./music.js"></script>
+
 <script src="./settingsPage.js"></script>
 <script src="./reload.js"></script>
 
